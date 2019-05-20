@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-@SpringBootApplication
+//@SpringBootApplication
 //public class TasksApplication extends SpringBootServletInitializer {
 
 public class TasksApplication{
@@ -19,5 +19,6 @@ public class TasksApplication{
 		return application.sources(TasksApplication.class);
 	}
 	*/
+
 
 }
