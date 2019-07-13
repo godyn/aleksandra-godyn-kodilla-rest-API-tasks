@@ -1,4 +1,4 @@
-package com.crud.tasks.config;
+package com.crud.tasks.trello.config;
 
 import lombok.Getter;
 import lombok.Setter;
