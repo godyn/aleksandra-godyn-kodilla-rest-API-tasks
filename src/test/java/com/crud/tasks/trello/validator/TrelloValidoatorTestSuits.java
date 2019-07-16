@@ -2,6 +2,7 @@ package com.crud.tasks.trello.validator;
 
 import com.crud.tasks.domain.Trello;
 import com.crud.tasks.domain.TrelloBoard;
+import com.crud.tasks.domain.TrelloCard;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +33,20 @@ public class TrelloValidoatorTestSuits {
         //THEN
         Assert.assertEquals(1, resultList.size() );
     }
+
+
+    @Test
+    public void testValidateCard(){
+        //GIVEN
+        TrelloCard testingTrelloCard = new TrelloCard("testName", "testDecs", "top", "5cb4d5d4952eb321ef701163");
+        TrelloCard trueTrelloCard = new TrelloCard("Task 23", "Decs task 23", "top", "5cb4d5d4952eb321ef701163");
+        //WHEN
+        trelloValidator.validateCard(testingTrelloCard);
+        trelloValidator.validateCard(trueTrelloCard);
+        //THEN
+        //check LOGS
+    }
+
 
 
 }
