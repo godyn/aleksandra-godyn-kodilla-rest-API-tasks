@@ -33,9 +33,6 @@ public class TrelloClientTest {
     @Mock
     private TrelloConfig trelloConfig;
 
-    @Mock
-    private BadgesDto badgesDto;
-
     @Before
     public void init(){
         Mockito.when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
@@ -68,7 +65,7 @@ public class TrelloClientTest {
 
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20description&pos=top&idList=test_id");
 
-        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("1", "Test task", "http://test.com", badgesDto);
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("1", "Test task", "http://test.com");
         Mockito.when(restTemplate.postForObject(uri, null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCardDto);
         //WHEN
         CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);

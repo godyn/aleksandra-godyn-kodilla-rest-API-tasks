@@ -2,10 +2,12 @@ package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.*;
 import com.crud.tasks.trello.facade.TrelloFacade;
-import org.hamcrest.Matcher;
+import com.google.gson.Gson;
+
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatcher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,42 +21,37 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.any;
-import static org.mockito.Matchers.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.ArgumentMatcher.*;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(TrelloController.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(TrelloController.class)
 public class TrelloControllerTest {
 
-    /*
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private TrelloFacade trelloFacade;
 
-    @MockBean
-    private BadgesDto badgesDto;
-
     @Test
     public void shouldCreateTrelloCard() throws Exception{
         //Given
         TrelloCardDto trelloCardDto = new TrelloCardDto("test_name", "test_desc", "top", "1" );
-        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("323", "test_name", "http://test.com", badgesDto);
-        when(trelloFacade.createCard(any())).thenReturn(createdTrelloCardDto);
-
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("323", "test_name", "http://test.com");
+        when(trelloFacade.createCard(org.mockito.Matchers.any(TrelloCardDto.class))).thenReturn(createdTrelloCardDto);
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(trelloCardDto);
         // When & Then
-
+        mockMvc.perform(post("/v1/trello/createTrelloCard").contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
+                .andExpect(jsonPath("$.id", Matchers.is("323")))
+                .andExpect(jsonPath("$.name",  Matchers.is("test_name")))
+                .andExpect(jsonPath("$.shortUrl",  Matchers.is("http://test.com")));
     }
 
     @Test
@@ -91,6 +88,6 @@ public class TrelloControllerTest {
                 .andExpect(jsonPath("$[0].lists[0].closed", is(false)));
 
     }
-*/
+
 
 }

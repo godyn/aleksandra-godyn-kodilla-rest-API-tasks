@@ -32,9 +32,6 @@ public class TrelloFacadeTest {
     @Mock
     private TrelloMapper trelloMapper;
 
-    @Mock
-    private BadgesDto badgesDto;
-
     @Test
     public void shouldFetchEmptyList(){
         //GIVEN
@@ -100,7 +97,7 @@ public class TrelloFacadeTest {
     public void shouldFetchCreatedTrelloCardDto(){
         //GIVEN
         TrelloCardDto trelloCardDto = new TrelloCardDto("testName", "testDecs", "top", "5cb4d5d4952eb321ef701163");
-        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("1", "testName", "http://test", badgesDto);
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("1", "testName", "http://test");
         TrelloCard trelloCard = new TrelloCard("testName", "testDecs", "top", "5cb4d5d4952eb321ef701163");
         when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
         when(trelloService.createTrelloCard(trelloCardDto)).thenReturn(createdTrelloCardDto);
